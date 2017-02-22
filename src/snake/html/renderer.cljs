@@ -22,11 +22,13 @@
   [context state]
   (loop [x 0]
     (if (< x (state :width))
-      (do (loop [y 0]
-            (if (< y (state :height))
-              (do (render-tile! context state x y)
-                recur (inc y))))
-        recur (inc x)))))
+      (do
+        (loop [y 0]
+          (if (< y (state :height))
+            (do
+              (render-tile! context state x y)
+              (recur (inc y)))))
+        (recur (inc x))))))
 
 (defn render!
   [context state]
